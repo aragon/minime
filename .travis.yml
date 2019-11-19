@@ -1,0 +1,15 @@
+language: node_js
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
+node_js:
+  - '10'
+before_script:
+  - npm prune
+jobs:
+  include:
+    - stage: tests
+      script: npm test
+      name: "Tests"
