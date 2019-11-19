@@ -541,6 +541,7 @@ contract MiniMeToken is Controlled {
 ///  In solidity this is the way to create a contract from a contract of the
 ///  same class
 contract MiniMeTokenFactory {
+    event NewFactoryCloneToken(address indexed _cloneToken, address indexed _parentToken, uint _snapshotBlock);
 
     /// @notice Update the DApp by creating a new token with new functionalities
     ///  the msg.sender becomes the controller of this clone token
@@ -572,6 +573,7 @@ contract MiniMeTokenFactory {
         );
 
         newToken.changeController(msg.sender);
+        NewFactoryCloneToken(address(newToken), address(_parentToken), _snapshotBlock);
         return newToken;
     }
 }
